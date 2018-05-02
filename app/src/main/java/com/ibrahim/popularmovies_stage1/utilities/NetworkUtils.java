@@ -1,4 +1,4 @@
-package com.example.ibrahim.popularmovies.utilities;
+package com.ibrahim.popularmovies_stage1.utilities;
 
 import android.net.Uri;
 import android.util.Log;
@@ -10,11 +10,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-import static com.example.ibrahim.popularmovies.data.Contract.API_KEY;
-import static com.example.ibrahim.popularmovies.data.Contract.BAS_URL;
-import static com.example.ibrahim.popularmovies.data.Contract.POPULAR_PART;
+import static com.ibrahim.popularmovies_stage1.data.Contract.API_KEY;
+import static com.ibrahim.popularmovies_stage1.data.Contract.BAS_URL;
+import static com.ibrahim.popularmovies_stage1.data.Contract.POPULAR_PART;
 
 /**
+ *
  * Created by ibrahim on 28/04/18.
  */
 

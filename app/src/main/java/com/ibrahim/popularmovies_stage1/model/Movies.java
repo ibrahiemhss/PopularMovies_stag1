@@ -1,4 +1,4 @@
-package com.example.ibrahim.popularmovies.model;
+package com.ibrahim.popularmovies_stage1.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,6 +7,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 /**
+ *
  * Created by ibrahim on 29/04/18.
  */
 
@@ -69,10 +70,12 @@ public class Movies implements Parcelable {
         release_date = in.readString();
     }
 
-    // The `Parcel` class has methods defined to help you save all of your values.
-    public static Creator<Movies> getCREATOR() {
-        return CREATOR;
-    }
+// --Commented out by Inspection START (03/05/18 01:40 ص):
+//    // The `Parcel` class has methods defined to help you save all of your values.
+//    public static Creator<Movies> getCREATOR() {
+//        return CREATOR;
+//    }
+// --Commented out by Inspection STOP (03/05/18 01:40 ص)
 
     /*override for setter and getter to all variables to use it out side
     to set values from json in OpenMoviesUtil class
@@ -84,34 +87,6 @@ public class Movies implements Parcelable {
 
     public void setVotAverage(long votAverage) {
         this.votAverage = votAverage;
-    }
-
-    public long getPopularity() {
-        return popularity;
-    }
-
-    public String getOriginal_language() {
-        return original_language;
-    }
-
-    public String getOriginal_title() {
-        return original_title;
-    }
-
-    public ArrayList<String> getGenre_ids() {
-        return genre_ids;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getBackdrop_path() {
-        return backdrop_path;
-    }
-
-    public boolean isAdult() {
-        return adult;
     }
 
     public String getOverview() {

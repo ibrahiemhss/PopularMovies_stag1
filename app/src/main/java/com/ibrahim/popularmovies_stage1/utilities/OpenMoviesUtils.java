@@ -1,6 +1,6 @@
-package com.example.ibrahim.popularmovies.utilities;
+package com.ibrahim.popularmovies_stage1.utilities;
 
-import com.example.ibrahim.popularmovies.model.Movies;
+import com.ibrahim.popularmovies_stage1.model.Movies;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
+ *
  * Created by *i*brahim on 28/04/18.
  */
 public class OpenMoviesUtils {

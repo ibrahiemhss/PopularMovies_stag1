@@ -3,6 +3,7 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0">
       <entry_point TYPE="field" FQNAME="com.example.ibrahim.popularmovies.data.Contract url" />
+      <entry_point TYPE="field" FQNAME="com.ibrahim.popularmovies_stage1.model.Movies CREATOR" />
     </entry_points>
     <pattern value="com.example.ibrahim.popularmovies.model.Movies" method="getPopularity" />
     <pattern value="com.example.ibrahim.popularmovies.model.Movies" method="getOriginal_language" />

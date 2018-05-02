@@ -1,4 +1,4 @@
-package com.example.ibrahim.popularmovies;
+package com.ibrahim.popularmovies_stage1;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,19 +14,20 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
-import com.example.ibrahim.popularmovies.model.Movies;
+import com.ibrahim.popularmovies_stage1.model.Movies;
 
 import java.util.ArrayList;
 
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_OVERVIEW;
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_RATE;
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_TITLE;
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_URL;
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_YEAR;
-import static com.example.ibrahim.popularmovies.data.Contract.IMAGE_URL;
-import static com.example.ibrahim.popularmovies.data.Contract.W500;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_OVERVIEW;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_RATE;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_TITLE;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_URL;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_YEAR;
+import static com.ibrahim.popularmovies_stage1.data.Contract.IMAGE_URL;
+import static com.ibrahim.popularmovies_stage1.data.Contract.W500;
 
 /**
+ *
  * Created by ibrahim on 29/04/18.
  */
 

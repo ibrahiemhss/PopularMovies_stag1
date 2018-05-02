@@ -1,5 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">PopularMovies</string>
+<resources>
+    <string name="app_name">PopularMovies Stage1</string>
     <string name="error_message">An error has occurred. Please try again by click on refresh </string>
     <string name="todo">TODO</string>
     <string name="overview">Overview</string>

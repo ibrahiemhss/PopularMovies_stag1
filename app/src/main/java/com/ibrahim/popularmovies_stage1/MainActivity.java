@@ -1,4 +1,4 @@
-package com.example.ibrahim.popularmovies;
+package com.ibrahim.popularmovies_stage1;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -13,17 +13,17 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.ibrahim.popularmovies.data.SharedPrefManager;
-import com.example.ibrahim.popularmovies.model.Movies;
-import com.example.ibrahim.popularmovies.utilities.NetworkUtils;
-import com.example.ibrahim.popularmovies.utilities.OpenMoviesUtils;
+import com.ibrahim.popularmovies_stage1.data.SharedPrefManager;
+import com.ibrahim.popularmovies_stage1.model.Movies;
+import com.ibrahim.popularmovies_stage1.utilities.NetworkUtils;
+import com.ibrahim.popularmovies_stage1.utilities.OpenMoviesUtils;
 
 import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.ArrayList;
 
-import static com.example.ibrahim.popularmovies.data.Contract.POPULAR_PART;
-import static com.example.ibrahim.popularmovies.data.Contract.TOP_RATED_PART;
+import static com.ibrahim.popularmovies_stage1.data.Contract.POPULAR_PART;
+import static com.ibrahim.popularmovies_stage1.data.Contract.TOP_RATED_PART;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Movies";

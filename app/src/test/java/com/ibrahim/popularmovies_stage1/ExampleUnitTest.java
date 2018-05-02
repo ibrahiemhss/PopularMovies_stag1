@@ -1,4 +1,4 @@
-package com.example.ibrahim.popularmovies;
+package com.ibrahim.popularmovies_stage1;
 
 import org.junit.Test;
 

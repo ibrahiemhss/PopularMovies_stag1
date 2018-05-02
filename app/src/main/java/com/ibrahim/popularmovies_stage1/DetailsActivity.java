@@ -1,4 +1,4 @@
-package com.example.ibrahim.popularmovies;
+package com.ibrahim.popularmovies_stage1;
 
 import android.annotation.SuppressLint;
 import android.graphics.PorterDuff;
@@ -16,13 +16,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_OVERVIEW;
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_RATE;
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_TITLE;
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_URL;
-import static com.example.ibrahim.popularmovies.data.Contract.EXTRA_YEAR;
-import static com.example.ibrahim.popularmovies.data.Contract.IMAGE_URL;
-import static com.example.ibrahim.popularmovies.data.Contract.W185;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_OVERVIEW;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_RATE;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_TITLE;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_URL;
+import static com.ibrahim.popularmovies_stage1.data.Contract.EXTRA_YEAR;
+import static com.ibrahim.popularmovies_stage1.data.Contract.IMAGE_URL;
+import static com.ibrahim.popularmovies_stage1.data.Contract.W185;
 
 /**
  * @see <a href="https://stackoverflow.com/questions/26788464/how-to-change-color-of-the-back-arrow-in-the-new-material-theme">http://google.com</a>

@@ -1,12 +1,16 @@
-package com.example.ibrahim.popularmovies.data;
+package com.ibrahim.popularmovies_stage1.data;
 
 /**
+ *
  * Created by ibrahim on 01/05/18.
+ *
  */
 
 public class Contract {
+    private static final String KEY = "?api_key=";
+
     //TODO the key of api you have to put your own key
-    public static final String API_KEY = "BUT YOUR API KEY HER :)";
+    public static final String API_KEY = KEY+"fa22ceab3172625817f5b2523e53ecd2";
     public static final String BAS_URL = "https://api.themoviedb.org/3/movie/";
     public static final String POPULAR_PART = "popular";
     public static final String TOP_RATED_PART = "top_rated ";
