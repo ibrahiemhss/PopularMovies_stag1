@@ -1,6 +1,5 @@
 package com.example.ibrahim.popularmovies;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import com.example.ibrahim.popularmovies.model.Movies;
 import com.example.ibrahim.popularmovies.utilities.NetworkUtils;
 import com.example.ibrahim.popularmovies.utilities.OpenMoviesUtils;
 
+import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -27,29 +27,30 @@ import static com.example.ibrahim.popularmovies.data.Contract.TOP_RATED_PART;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Movies";
+    private static final String STATE_MOVIES = "state_movies";
     private RecyclerView mRecyclerView;
     private TextView mErrorMessageDisplay;
     private Button mRefresh;
     private ProgressBar mLoadingIndicator;
     private ArrayList<Movies> moviesArrayList;
-    private  MoviesAdapter mAdapter;
-    private  static final String STATE_MOVIES="state_movies";
+    private MoviesAdapter mAdapter;
     private Menu menu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         /*make sure if  savedInstanceState not null after rotate or exit the application
-        * snd it have the key that come from onSaveInstanceState with Bundle
-        * */
-        if(savedInstanceState!= null && savedInstanceState.containsKey(STATE_MOVIES)) {
+         * snd it have the key that come from onSaveInstanceState with Bundle
+         * */
+        if (savedInstanceState != null && savedInstanceState.containsKey(STATE_MOVIES)) {
             //after check get the value of that key in  moviesArrayList
             moviesArrayList = savedInstanceState.getParcelableArrayList(STATE_MOVIES);
         }
         setContentView(R.layout.activity_main);
 
-        moviesArrayList=new ArrayList<>();
-        mRecyclerView =  findViewById(R.id.recyclerview_movies);
-        mErrorMessageDisplay =  findViewById(R.id.tv_error_message_display);
+        moviesArrayList = new ArrayList<>();
+        mRecyclerView = findViewById(R.id.recyclerview_movies);
+        mErrorMessageDisplay = findViewById(R.id.tv_error_message_display);
         /*
          * GridLayoutManager get with two parameters context
          * & integer to make two horizontal raw every item in recyclerView
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
          * The MoviesAdapter is responsible for linking our movies data with the Views that
          * will end up displaying our movies data.
          */
-        mAdapter = new MoviesAdapter(this,moviesArrayList);
+        mAdapter = new MoviesAdapter(this, moviesArrayList);
 
         /* Setting the adapter attaches it to the RecyclerView in our layout. */
         mRecyclerView.setAdapter(mAdapter);
@@ -70,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
          * The ProgressBar that will indicate to the user that we are loading data. It will be
          * hidden when no data is loading
          */
-        mLoadingIndicator =  findViewById(R.id.pb_loading_indicator);
-        mRefresh=findViewById(R.id.btn_refresh);
+        mLoadingIndicator = findViewById(R.id.pb_loading_indicator);
+        mRefresh = findViewById(R.id.btn_refresh);
         mRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,21 +85,22 @@ public class MainActivity extends AppCompatActivity {
         loadMoviesData();
 
     }
+
     /**
      * background method to get the movies data in the background.
      */
     private void loadMoviesData() {
         showMoviesDataView();
-
-        new FetchMoviesrTask().execute();
+        new FetchMoviesrTask(this).execute();
     }
+
     /**
      * Override method to put moviesArrayList and
      * key  STATE_MOVIES inside Bundle by ParcelableArrayList
      */
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(STATE_MOVIES,moviesArrayList);
+        outState.putParcelableArrayList(STATE_MOVIES, moviesArrayList);
         super.onSaveInstanceState(outState);
     }
 
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 //change title of menu  that show in  toolbar by sellected itme text
                 setMenuName(TOP_RATED_PART);
                 //save String==> top_rated   so will change the URL and therefore bring the json based on==> top_rated
-              SharedPrefManager.getInstance(MainActivity.this).setPrefUrlSellected(TOP_RATED_PART);
+                SharedPrefManager.getInstance(MainActivity.this).setPrefUrlSellected(TOP_RATED_PART);
                 //recall method  loadMoviesData to get data from new url
                 loadMoviesData();
 
@@ -134,16 +136,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
         try {
-            getMenuInflater().inflate(R.menu.main_menu,menu);
+            getMenuInflater().inflate(R.menu.main_menu, menu);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.i(TAG, "onCreateOptionsMenu: error: "+e.getMessage());
+            Log.i(TAG, "onCreateOptionsMenu: error: " + e.getMessage());
         }
         return super.onCreateOptionsMenu(menu);
     }
-    private void setMenuName(String set){
+
+    private void setMenuName(String set) {
         menu.findItem(R.id.selected).setTitle(set);
     }
+
     /**
      * This method will make the View for the movies data visible and
      * hide the error message.
@@ -173,16 +177,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//perform network requests by AsyncTask
-   public  class FetchMoviesrTask extends AsyncTask<String, Void, ArrayList<Movies>> {
-    //doInBackground method to perform  network requests
+
+    //perform network requests by AsyncTask
+
+    /**
+     * @see <a href="https://stackoverflow.com/questions/44309241/warning-this-asynctask-class-should-be-static-or-leaks-might-occur">http://google.com</a>
+     */
+    private static class FetchMoviesrTask extends AsyncTask<String, Void, ArrayList<Movies>> {
+        private final WeakReference<MainActivity> activityReference;
+
+        // only retain a weak reference to the activity
+        FetchMoviesrTask(MainActivity context) {
+            activityReference = new WeakReference<>(context);
+        }
+
+        //doInBackground method to perform  network requests
         @Override
         protected ArrayList<Movies> doInBackground(String... params) {
 
             /* If there's no zip code, there's nothing to look up. */
 
             /* url from methode NetworkUtils.buildUrl by parsing the selected sort of review Movie in path*/
-            URL moviesRequestUrl = NetworkUtils.buildUrl(SharedPrefManager.getInstance(MainActivity.this).getPrefUrlSellected());
+            URL moviesRequestUrl = NetworkUtils.buildUrl(SharedPrefManager.getInstance(activityReference.get()).getPrefUrlSellected());
 
             try {
                 /*get the value json data com from url
@@ -197,39 +213,29 @@ public class MainActivity extends AppCompatActivity {
                 return null;
             }
         }
+
         @Override
         protected void onPostExecute(ArrayList<Movies> MoviesData) {
-        //after loading data Progress Bar will disappear
-           mLoadingIndicator.setVisibility(View.INVISIBLE);
+            // get a reference to the activity if it is still there
+            /*{@link https://stackoverflow.com/questions/44309241/warning-this-asynctask-class-should-be-static-or-leaks-might-occur*/
+
+            MainActivity activity = activityReference.get();
+            if (activity == null || activity.isFinishing()) return;
+
+            //after loading data Progress Bar will disappear
+            activity.mLoadingIndicator.setVisibility(View.INVISIBLE);
             if (MoviesData != null) {
-                showMoviesDataView();
+                activity.showMoviesDataView();
                 /*set the the of our moviesArrayList from the value that com from asyncTask ( onPostExecute  parameter
-                * to save it inside onSaveInstanceState
-                * */
-                    moviesArrayList=MoviesData;
-                    /*ubdate the value of mAdapter by sending the value of arraylist inside it */
-                    mAdapter.updateMovies(moviesArrayList);
-                    mAdapter.notifyDataSetChanged();
-             }
-                else {
-                showErrorMessage();
-            }
+                 * to save it inside onSaveInstanceState
+                 * */
+                activity.moviesArrayList = MoviesData;
+                /*ubdate the value of mAdapter by sending the value of arraylist inside it */
+                activity.mAdapter.updateMovies(activity.moviesArrayList);
+                activity.mAdapter.notifyDataSetChanged();
+            } else {
+                activity.showErrorMessage();
             }
         }
-    public void setUi(ArrayList<Movies> movies) {
-        //after loading data Progress Bar will disappear
-        mLoadingIndicator.setVisibility(View.INVISIBLE);
-        if (movies != null) {
-            showMoviesDataView();
-                /*set the the of our moviesArrayList from the value that com from asyncTask ( onPostExecute  parameter
-                * to save it inside onSaveInstanceState
-                * */
-            moviesArrayList = movies;
-                    /*ubdate the value of mAdapter by sending the value of arraylist inside it */
-            mAdapter.updateMovies(moviesArrayList);
-            mAdapter.notifyDataSetChanged();
-        } else {
-            showErrorMessage();
-        }
     }
-    }
+}

@@ -1,4 +1,5 @@
 package com.example.ibrahim.popularmovies.utilities;
+
 import android.net.Uri;
 import android.util.Log;
 
@@ -14,9 +15,7 @@ import static com.example.ibrahim.popularmovies.data.Contract.BAS_URL;
 import static com.example.ibrahim.popularmovies.data.Contract.POPULAR_PART;
 
 /**
- *
  * Created by ibrahim on 28/04/18.
- *
  */
 
 public final class NetworkUtils {
@@ -24,7 +23,7 @@ public final class NetworkUtils {
 
 
     private static final String DEFAULT_MOVIES_URL =
-            BAS_URL+POPULAR_PART+API_KEY;
+            BAS_URL + POPULAR_PART + API_KEY;
 
     /**
      * @param selected The selected data come from menu selection that will be queried for.
@@ -35,13 +34,13 @@ public final class NetworkUtils {
         /*String selected  in first time will come empty so we
         must check if it will be null i make default value of String selected
         just the url will come full not divided*/
-        if(selected==null){
+        if (selected == null) {
             builtUri = Uri.parse(DEFAULT_MOVIES_URL).buildUpon()
                     .build();
 
-        }else {
+        } else {
 /* The string you will be given will be selected either as==>"popular" or ==>"top_rated" */
-            builtUri = Uri.parse(BAS_URL+selected.trim()+API_KEY).buildUpon()
+            builtUri = Uri.parse(BAS_URL + selected.trim() + API_KEY).buildUpon()
                     .build();
         }
         //  Return the URL used to query API
@@ -56,6 +55,7 @@ public final class NetworkUtils {
 
         return url;
     }
+
     /**
      * This method returns the entire result from the HTTP response.
      *
