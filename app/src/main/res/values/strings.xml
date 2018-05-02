@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">PopularMovies</string>
+
+    <string name="api_key" tools:keep="@string/api_key">fa22ceab3172625817f5b2523e53ecd2</string>
+    <string name="error_message">An error has occurred. Please try again by click on refresh </string>
+    <string name="todo">TODO</string>
+    <string name="overview">Overview</string>
+    <string name="release_date">Release date :</string>
+    <string name="sort_py">sort py</string>
+    <string name="top_rated">top rated</string>
+    <string name="popular">popular</string>
+    <string name="refresh">Refresh</string>
+</resources>
