@@ -25,4 +25,5 @@ public class Contract {
     public static final String W185 = "w185";
     public static final String W500 = "w500";
 
+
 }
