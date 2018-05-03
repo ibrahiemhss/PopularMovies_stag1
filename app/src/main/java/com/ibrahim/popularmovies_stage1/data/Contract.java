@@ -7,6 +7,7 @@ package com.ibrahim.popularmovies_stage1.data;
  */
 
 public class Contract {
+
     private static final String KEY = "?api_key=";
     //TODO put your own Api key
     public static final String API_KEY = KEY+"BUT UR API KEY HER :)";
