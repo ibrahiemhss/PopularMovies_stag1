@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         /* Setting the adapter attaches it to the RecyclerView in our layout. */
         mRecyclerView.setAdapter(mAdapter);
+
         /*
          * The ProgressBar that will indicate to the user that we are loading data. It will be
          * hidden when no data is loading

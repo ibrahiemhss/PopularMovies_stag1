@@ -33,6 +33,7 @@ public class DetailsActivity extends AppCompatActivity {
     private String mUrl;
     private String mTitle;
 
+
     @SuppressLint("PrivateResource")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

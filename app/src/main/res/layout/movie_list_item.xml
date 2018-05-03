@@ -18,6 +18,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/todo" />
 
+
     <TextView
         android:id="@+id/tv_movie_data"
         android:layout_width="wrap_content"
