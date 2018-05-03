@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.ibrahim.popularmovies_stage1.interfaces.OnItemClickListener;
 import com.ibrahim.popularmovies_stage1.model.Movies;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
     private final Context context;
     /*get Movies Class as object inside list to set and get all data from it */
     private ArrayList<Movies> listMovie;
+  //  private final OnItemClickListener listener;
 
     public MoviesAdapter(MainActivity context, ArrayList<Movies> movies) {
         this.listMovie = movies;

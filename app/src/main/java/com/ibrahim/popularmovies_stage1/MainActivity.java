@@ -1,5 +1,8 @@
 package com.ibrahim.popularmovies_stage1;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ibrahim.popularmovies_stage1.data.SharedPrefManager;
 import com.ibrahim.popularmovies_stage1.model.Movies;
@@ -73,11 +77,24 @@ public class MainActivity extends AppCompatActivity {
          */
         mLoadingIndicator = findViewById(R.id.pb_loading_indicator);
         mRefresh = findViewById(R.id.btn_refresh);
+
         mRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAdapter.updateMovies(null);
-                loadMoviesData();
+                ConnectivityManager cm =
+                        (ConnectivityManager)MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                boolean isConnected = activeNetwork != null &&
+                        activeNetwork.isConnectedOrConnecting();
+                boolean isWiFi = activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
+if(isConnected||isWiFi){
+    loadMoviesData();
+
+}else {
+    Toast.makeText(MainActivity.this, getResources().getString(R.string.check_intenet),Toast.LENGTH_LONG).show();
+}
 
             }
         });
